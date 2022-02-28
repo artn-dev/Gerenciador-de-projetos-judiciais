@@ -31,3 +31,15 @@ Scenario: Acessando processo existente do usuário
     When I open details of process “Processo de Alguma Coisa”
     Then I am in the “details” page of process “Processo de Alguma Coisa”
 
+Scenario: Anexando documento em um processo existente
+    Given I am logged in as user “Fulano Detal” with cpf “123.456.789-10” and password “senha1234”
+    And the date is “23/02/2022”
+    And the local time is “15:23 UTC-3:00”
+    And I am in the “details” page of process “Processo de Alguma Coisa”
+    And I don’t see a document “Copia RG do Rel.pdf”
+    When I attach document
+    And I choose the file “Copia RG do Rel.pdf” in my local system
+    Then I see a success message
+    And I still am in the “details” page of process “Processo de Alguma Coisa”
+    And I see a document “Copia RG do Rel.pdf” attached by “Fulano Detal” at “15:23 UTC-3:00” in “23/02/2022”
+
