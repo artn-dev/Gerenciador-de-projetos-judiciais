@@ -24,3 +24,10 @@ Scenario: Acessar lista de documentos de um processo filtrados por data
     And the document “Certidao Nascimento Rel.pdf” is stored in the system with date “23/02/2022”
     And the document “Copia Passaporte Rel.pdf” is stored in the system with date “9/10/2021”
 
+Scenario: Acessando processo existente do usuário
+    Given I am logged in as user “Fulano Detal” with cpf “123.456.789-10” and password “senha1234”
+    And I am in the “processes” page
+    And I see a process “Processo de Alguma Coisa”
+    When I open details of process “Processo de Alguma Coisa”
+    Then I am in the “details” page of process “Processo de Alguma Coisa”
+
