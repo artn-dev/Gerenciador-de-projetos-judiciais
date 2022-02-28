@@ -53,3 +53,13 @@ Scenario: Acessando documento de um processo existente
     And I see it was attached at “15:23 UTC-3:00”
     And I see it was attached in “23/02/2022”
 
+Scenario: Removendo documento anexado em processo existente
+    Given I am logged in as user “Fulano Detal” with cpf “123.456.789-19” and password “senha1234”
+    And I am in the “details” page of process “Processo de Alguma Coisa”
+    And I see a document “Copia RG do Rel.pdf” attached by lawyer “Fulano Detal” at “15:23 UTC-3:00” in “23/02/2022”
+    And I opened details of “Copia RG do Rel.pdf”
+    When I remove “Copia RG do Rel.pdf”
+    And I confirm the removal
+    Then I still and in the “details” page of process “Processo de Alguma Coisa”
+    And I don’t see document “Copia RG do Rel.pdf”
+
