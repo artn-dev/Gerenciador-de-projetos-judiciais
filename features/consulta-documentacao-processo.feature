@@ -64,3 +64,13 @@ Scenario: Removendo documento anexado em processo existente
     And I still am logged in as user “Fulano Detal” with cpf “123.456.789-19” and password “senha1234”
     And I don’t see document “Copia RG do Rel.pdf”
 
+Scenario: Solicitar documentos do um processo no sistema
+    Given the system has documents "Copia RG do Rel.pdf", "Certidao Nascimento Rel.pdf" and  “Copia Passaporte Rel.pdf” stored
+    And the system has a process "Processo de Alguma Coisa" stored
+    And the process "Processo de Alguma Coisa" has the documents "Copia RG do Rel", "Certidao Nascimento Rel" and  “Copia Passaporte Rel.pdf” attached
+    When I ask the system for documents attached to process "Processo de Alguma Coisa"
+    Then I receive documents "Copia RG do Rel.pdf", "Certidao Nascimento Rel.pdf" and  “Copia Passaporte Rel.pdf”
+    And  the system has documents "Copia RG do Rel.pdf", "Certidao Nascimento Rel.pdf" and  “Copia Passaporte Rel.pdf” stored
+    And the system has a process "Processo de Alguma Coisa" stored
+    And the process "Processo de Alguma Coisa" has the documents "Copia RG do Rel", "Certidao Nascimento Rel" and  “Copia Passaporte Rel.pdf” attached
+
