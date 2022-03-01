@@ -61,5 +61,6 @@ Scenario: Removendo documento anexado em processo existente
     When I remove “Copia RG do Rel.pdf”
     And I confirm the removal
     Then I still and in the “details” page of process “Processo de Alguma Coisa”
+    And I still am logged in as user “Fulano Detal” with cpf “123.456.789-19” and password “senha1234”
     And I don’t see document “Copia RG do Rel.pdf”
 
